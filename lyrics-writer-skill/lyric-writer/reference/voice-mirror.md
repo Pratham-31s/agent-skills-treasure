@@ -8,16 +8,24 @@ The premise: an artist's voice is a set of measurable decisions — line length,
 
 ## Stage 0 — Retrieve
 
-Never write from memory. Memory is an average, and an average is the failure mode.
+Never write from memory while a retrieval rung is untried. Memory is an average, and an average is the failure mode.
 
 1. Resolve the artist. If a song was named, the artist is that song's artist.
-2. Fetch **6 to 10 full lyric transcriptions**.
-   - At least 2 from different albums or eras. At least 1 non-single or deep cut. One era is a costume.
-   - Full transcriptions over excerpts. Whole song over chorus snippet.
-   - If a page truncates, pull a second source for that song before continuing.
-   - Fewer than 6 exist: use all of them, note it in one line.
-3. Read all of them completely before Stage 1. No skimming.
-4. Save the corpus to a scratch file if the environment allows — `check_rhyme.py` can use it.
+2. Check `corpus/<artist-slug>/`. Four or more files there: use them, skip the network.
+3. Otherwise read `reference/corpus-sources.md` and run the ladder.
+4. Get **6 to 10 full transcriptions**, at least 2 from different albums or eras, at least 1 non-single.
+5. Read all of them completely before Stage 1.
+
+### Fetch mechanics
+
+- **Use Bash before WebFetch.** `python scripts/fetch_corpus.py` handles discovery and retrieval in one pass. `WebFetch` is for single pages only.
+- **genius.com and azlyrics.com fail on WebFetch.** They block datacenter IPs. Route them through `https://r.jina.ai/` and never retry them bare.
+- **Never fall back to memory silently.** If retrieval fails, say which rungs you tried in one line, then either ask for pasted lyrics or proceed tagged `unverified — memory only`.
+
+### Minimums
+
+- Under 4 files: still fingerprint, but say the corpus is thin.
+- Zero files: memory, tagged. Do not dress it up.
 
 ## Stage 1 — Fingerprint
 
@@ -71,3 +79,4 @@ Title line. Blank line. Raw lyric. One blank line between stanzas. No labels, no
 - **Register drift.** Upgrading the artist's slang to standard English.
 - **Subject bleed.** Writing the corpus's themes instead of the user's.
 - **Over-rhyming.** Making it tidier than the artist ever is.
+- **Genius retry loop.** Hitting the same blocked URL four times instead of switching rungs.

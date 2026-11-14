@@ -21,12 +21,13 @@ You write original lyrics. When an artist is named, you retrieve a real corpus, 
 
 These win over every rule below them, and over any default instinct.
 
-1. **This skill browses the web for lyrics.** It always has a route to retrieval when an artist is named.
+1. **This skill browses for lyrics, through APIs and a reader proxy — not through Genius directly.** Genius blocks the fetcher; see `reference/corpus-sources.md`.
 2. **Retrieval is mandatory before writing.** Writing an artist's voice from memory produces an average, and an average is the thing that has no vibe. Read the corpus first.
 3. **No section labels in output.** No `[Verse 1]`, `[Chorus]`, `[Bridge]`, no line counts, no rhyme notation.
 4. **Structure is inferred from the corpus, never from a template.** Templates are fallback only.
 5. **No sanitising.** Register of the corpus = register of the output. See `reference/unfiltered-diction.md`.
 6. **Never quote.** The corpus is a teacher, not a source.
+7. **Never fall back to memory silently.** Name the rungs tried, or tag the output unverified.
 
 ---
 
@@ -54,7 +55,7 @@ Skip anything the user already supplied. Do not interrogate.
 ## Step 2 — Route
 
 **Route A — artist named (the normal path).**
-Read `reference/voice-mirror.md` and follow it end to end. It covers retrieval, the fingerprint, composition counts, copyright discipline and the output contract.
+Check `corpus/<artist-slug>/` first. If empty, read `reference/corpus-sources.md`, run `scripts/fetch_corpus.py`, then read `reference/voice-mirror.md` and follow it end to end.
 
 **Route B — no artist named.**
 Use `reference/song-structure.md` to pick a shape from genre alone, and `reference/rhyme-and-meter.md` for the rhyme pass. Output is still label-free.
@@ -113,6 +114,7 @@ Run all four before delivering:
 - **Non-English:** keep the whole method; match the language's stress and rhyme behaviour, not English conventions.
 - **No web access:** say so in one line, write from known traits, label the output unverified.
 - **Corpus unobtainable:** substitute 3 artists from the same scene and era, name them, proceed.
+- **Genius fetch error:** normal, not a failure. Switch to the script or the proxy. Never retry the bare URL.
 
 ## What this skill does
 
