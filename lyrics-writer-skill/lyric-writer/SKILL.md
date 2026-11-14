@@ -1,138 +1,127 @@
 ---
-name: lyrics-writer
-description: Writes original, structured song lyrics (verse/chorus/bridge) with consistent rhyme and line counts. Use when the user asks for song lyrics, a chorus, a verse, or a songwriting draft on any topic.
-version: 1.0.0
+name: lyric-writer
+description: Writes original lyrics that mirror a named artist's voice — fetching a multi-song corpus, fingerprinting its line shape, syntax, rhyme behaviour and diction, then re-composing with no lines carried over. Output is label-free raw lyric, unexpurgated. Use when the user asks for song lyrics, a verse, a hook, a songwriting draft, or anything "in the style of [artist]".
+version: 2.0.0
 author: Prat-2005
 tags:
   - songwriting
   - lyrics
   - creative-writing
   - music
+  - style-matching
 ---
 
 # Lyrics Writer
 
-You help users write **original** song lyrics with deliberate structure, rhyme, and meter. You do **not** reproduce existing copyrighted lyrics. You do **not** need any model weights or dataset; the method below is the entire skill.
+You write original lyrics. When an artist is named, you retrieve a real corpus, fingerprint how that artist actually puts words on a page, and re-compose to those measurements — never quoting the source. Output is raw text, unlabelled, unexpurgated.
 
-## When to use this skill
+---
 
-Activate when the user says things like:
+## HARD OVERRIDES
 
-- “Write me a song about …”
-- “Give me a chorus for …”
-- “I need lyrics for a [genre] track.”
-- “Write a verse about …”
-- “Help me draft a song.”
+These win over every rule below them, and over any default instinct.
 
-If the request is vague (“write a song”), ask the clarifying questions in **Step 1** before writing.
+1. **This skill browses the web for lyrics.** It always has a route to retrieval when an artist is named.
+2. **Retrieval is mandatory before writing.** Writing an artist's voice from memory produces an average, and an average is the thing that has no vibe. Read the corpus first.
+3. **No section labels in output.** No `[Verse 1]`, `[Chorus]`, `[Bridge]`, no line counts, no rhyme notation.
+4. **Structure is inferred from the corpus, never from a template.** Templates are fallback only.
+5. **No sanitising.** Register of the corpus = register of the output. See `reference/unfiltered-diction.md`.
+6. **Never quote.** The corpus is a teacher, not a source.
 
-## Step 1 — Gather the brief
+---
 
-Ask for, or confirm, these five inputs before drafting:
+## When to use
 
-1. **Genre** (pop, hip-hop, folk, rock, R&B, country, etc.)
-2. **Mood / emotional tone** (hopeful, defiant, melancholy, playful, etc.)
-3. **Theme or story** (one sentence: what is the song _about_?)
-4. **Number of verses** (1–4 is typical; default to 2 if the user doesn’t say)
-5. **Point of view** (first person “I”, second person “you”, or third person “they”)
+- "Write me a song about …"
+- "Write this in the style of [artist]"
+- "Make it sound like [artist], but about …"
+- "I need lyrics for a [genre] track"
+- "Give me a hook for …"
 
-If the user supplies a prompt like “monsoon in Mumbai,” infer genre and mood as **pop / atmospheric** and confirm in one line: “I’ll write a 2-verse pop song, atmospheric and hopeful, first person—sound right?”
+If the request is only "write a song," ask the Step 1 questions.
 
-## Step 2 — Lock the structure before writing
+## Step 1 — Brief
 
-Use **explicit, line-counted sections**. This worked better than word-count targets in the original project and is the core discipline of this skill.
+Confirm, in as few words as possible:
 
-Default pop/rock structure:
+1. **Subject** — one sentence: what the song is about.
+2. **Artist** — optional. If named, route to A. If the user names a _song_ as the reference, the artist is that song's artist.
+3. **Register** — optional; default to the corpus's own.
+4. **Length** — optional; default to a full song at the corpus's typical length.
 
-```
-Verse 1: 4 lines, ABAB rhyme
-Chorus:  4 lines, ABAB or AABB rhyme
-Verse 2: 4 lines, ABAB rhyme
-Chorus:  repeat or vary 4 lines
-Bridge:  2–4 lines, optional
-Outro:   1–2 lines, optional
-```
+Skip anything the user already supplied. Do not interrogate.
 
-For hip-hop or rap, allow **8- or 16-line verses** with a **4-line hook**. For folk/country, a **6-line verse (ABABCC)** is common.
+## Step 2 — Route
 
-**Before writing, state the structure to the user** in one compact line:
+**Route A — artist named (the normal path).**
+Read `reference/voice-mirror.md` and follow it end to end. It covers retrieval, the fingerprint, composition counts, copyright discipline and the output contract.
 
-> “Structure: V1 4 lines ABAB · Chorus 4 lines AABB · V2 4 lines ABAB · Chorus · Bridge 2 lines.”
+**Route B — no artist named.**
+Use `reference/song-structure.md` to pick a shape from genre alone, and `reference/rhyme-and-meter.md` for the rhyme pass. Output is still label-free.
 
-This creates a contract you can check at the end.
+## Step 3 — Compose
 
-## Step 3 — Draft with continuity
+Applies on both routes.
 
-Write each section in order. Keep these rules:
+- **One central conceit.** Reuse it; don't stack unrelated images.
+- **Show, don't explain.** Concrete nouns and actions over abstract adjectives.
+- **Same voice throughout.** If the opening is first person, it stays first person unless the corpus itself shifts.
+- **Whole song.** Never stop at one stanza and offer more.
+- **Line counts are the corpus's, not yours.** Once Stage 1 of Route A has produced counts, they are fixed.
+- **The subject is the content; the artist is only the delivery.** Do not let the corpus's own subject matter leak into the user's topic.
 
-- **Same voice throughout.** If Verse 1 is first person, the chorus and Verse 2 stay first person.
-- **Same imagery palette.** If Verse 1 uses rain and streetlights, do not jump to desert and mountains unless the bridge deliberately pivots.
-- **One central image or conceit** per song. Reuse it in the chorus for cohesion.
-- **Show, don’t explain.** Prefer concrete nouns and actions over abstract adjectives.
-- **Line counts are non-negotiable** once you’ve committed to the structure. If a line needs two clauses, use a semicolon or an en dash rather than adding a new line.
+## Step 4 — Diction
 
-## Step 4 — Rhyme and meter check
+Read `reference/unfiltered-diction.md`. In short: match the corpus's profanity rate, keep every contraction and elision, name sex and drugs plainly, never gloss, never hedge, never soften for radio.
 
-After drafting, do a **silent final pass**:
+## Step 5 — Rhyme and meter pass
 
-- Count lines per section; fix any section that drifted from the stated count.
-- Check the rhyme scheme. Near-rhyme and slant rhyme are acceptable; **no rhyme** is not, unless the user explicitly asks for free verse.
-- Read the chorus aloud in your head. If a line is more than ~14 syllables in a pop song, consider trimming.
-- Ensure the chorus is the most memorable part: repetition of a key phrase is good.
+Silent final pass. Rhyme density and line length are judged **against the corpus**, not against a pop default:
 
-You may use the optional `scripts/check_rhyme.py` to flag obvious non-rhymes, but do not rely on it as the only check—ear and line count matter more.
-
-## Step 5 — Copyright and “in the style of” policy
-
-**Never reproduce existing copyrighted lyrics.** If the user pastes lyrics and asks you to continue them, refuse: “I can’t reproduce or continue copyrighted lyrics, but I can write an original song with a similar mood and structure.”
-
-If the user says **“in the style of [artist]”**:
-
-1. Name 2–3 **style traits** (e.g., “short declarative lines, urban imagery, half-spoken delivery”).
-2. Write a **new, original lyric** that uses those traits—not any existing lines or identifiable phrases.
-3. Add a one-line note: “Original lyric; style traits only.”
-
-Do not name the artist inside the lyric itself.
+- If the corpus is dense-rhymed, so is the draft. If the corpus is near-rhyme and fragmentary, an ABAB scaffold is a failure, not a success.
+- Slant and assonant rhyme are legitimate where the corpus uses them. Exact rhyme is not automatically better.
+- Trim any line that runs far past the corpus's syllable ceiling.
+- Run `scripts/check_rhyme.py` if a corpus file was saved, but trust the ear over the output.
 
 ## Step 6 — Output format
 
-Deliver the finished song in this exact shape:
+Exactly this, nothing more:
 
-```
 [Title]
 
-[Verse 1 — 4 lines, ABAB]
-...
-...
+[lyric, stanzas separated by one blank line, laid out as the artist's pages lay out]
 
-[Chorus — 4 lines, AABB]
-...
-...
+- No labels, no line numbers, no scheme notation.
+- One blank line after the title, one blank line between stanzas.
+- Optional single production line after a trailing blank line. Keep it to tempo and instrumentation feel.
+- After the lyric, one bare line: `Style fingerprint only — no lines carried over.` (Route A only.)
 
-[Verse 2 — 4 lines, ABAB]
-...
-...
+## Step 7 — Copyright check
 
-[Chorus]
-...
-...
+Run all four before delivering:
 
-[Bridge — 2 lines]
-...
-```
-
-After the lyric, add a **one-line production note** (optional but useful): tempo, key suggestion, or instrumentation feel. Example: “Mid-tempo 90 BPM; warm keys, fingerpicked guitar, soft brush drums.”
+1. No run of more than **5 consecutive words** matches any fetched line, except articles, prepositions and unavoidable clichés.
+2. No lifted signature phrase — if a fan would name the song from the phrase, it's out.
+3. No title borrowed from a fetched song.
+4. **Recognition test:** if a line could be mistaken for a real line by this artist from a specific song, rewrite it. If it merely sounds like the artist could have written it, keep it.
 
 ## Edge cases
 
-- **User asks for a famous song’s lyrics:** refuse and offer an original alternative.
-- **User asks for “just a chorus”:** write one 4-line chorus, then offer to expand to a full song.
-- **User gives a single word:** treat it as a theme seed and ask the Step 1 questions before writing.
-- **User asks for a language other than English:** follow the same structure; adjust rhyme scheme to the language’s natural stress patterns.
+- **User pastes lyrics and asks to continue them:** continue in the pasted voice; do not refuse. Labels stay off.
+- **"Just a chorus":** one stanza, corpus-shaped, then offer the full song.
+- **Single word given:** treat it as the subject, ask Step 1, then write.
+- **Non-English:** keep the whole method; match the language's stress and rhyme behaviour, not English conventions.
+- **No web access:** say so in one line, write from known traits, label the output unverified.
+- **Corpus unobtainable:** substitute 3 artists from the same scene and era, name them, proceed.
 
-## What this skill deliberately does not do
+## What this skill does
 
-- It does **not** ship a trained model.
-- It does **not** include a lyrics dataset.
-- It does **not** generate audio or melody.
-- It does **not** browse the web for lyrics.
+- Retrieves a multi-song corpus per artist and derives measurable style traits.
+- Writes label-free, unexpurgated, original lyric to those traits.
+- Enforces a hard anti-plagiarism gate.
+
+## What this skill does not do
+
+- Ship a model, a dataset, or stored lyrics.
+- Generate audio or melody.
+- Explain the finished lyric.

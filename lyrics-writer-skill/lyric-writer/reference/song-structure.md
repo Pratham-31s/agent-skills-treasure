@@ -1,41 +1,34 @@
-# Common Song Structures
+# Song Structure
 
-Use these as defaults; adapt to the user’s genre.
+Fallback only. Used when no artist is named, or when no corpus could be retrieved. When a corpus exists, its architecture wins over everything here.
 
-## Pop / Rock (radio length, 3–4 min)
+Output stays label-free on every route.
 
-| Section               | Lines  | Rhyme        | Notes                         |
-| --------------------- | ------ | ------------ | ----------------------------- |
-| Verse 1               | 4      | ABAB         | Set scene, introduce narrator |
-| Pre-chorus (optional) | 2      | AA           | Build tension                 |
-| Chorus                | 4      | AABB or ABAB | Emotional thesis, repeatable  |
-| Verse 2               | 4      | ABAB         | Deepen story, same voice      |
-| Chorus                | repeat | —            | Same or slight variation      |
-| Bridge                | 2–4    | free or CC   | New angle, dynamic shift      |
-| Final chorus          | repeat | —            | Often double the last line    |
-| Outro                 | 1–2    | —            | Fade or tag                   |
+## Genre defaults
 
-## Hip-hop / Rap
+Pick the shape that matches the genre, then write without labels.
 
-- **Verse:** 8 or 16 lines; rhyme density can be internal as well as end-rhyme.
-- **Hook:** 4 lines, simple and repeatable.
-- **Structure:** Hook · Verse 1 · Hook · Verse 2 · Hook · Bridge (optional) · Hook.
+- **Pop:** 4-line stanzas, 5 stanzas, hook returns twice, 2-line tag to close.
+- **Hip-hop / rap:** 8 or 16-line stanzas, 4-line hook, hook after every stanza, ad-lib tails.
+- **Folk / country:** 6-line stanzas, narrative arc, hook as a repeated refrain line inside the stanza rather than a block.
+- **Rock:** 4-line stanzas, hard 2-line hook, one short bridge that pivots the image.
+- **R&B:** 4–6-line stanzas, elongated vowel endings, hook that re-enters mid-stanza.
+- **Ballad:** 6–8-line stanzas, no bridge, single repeated closing line.
 
-## Folk / Country
+## Staging
 
-- **Verse:** 6 lines, ABABCC or ABCBDB.
-- **Chorus:** 4 lines, often AABB.
-- **Bridge:** optional; a 2-line tag or a repeated refrain works.
+- Open on an image or an action, never on a thesis.
+- One central conceit, reused.
+- Turn or reveal at roughly two-thirds.
+- End hard: a repeated tag, a cut line, or a spoken tail. No summary stanza.
 
-## Ballad
+## When structure is failing
 
-- **Verse:** 4–6 lines, loose rhyme.
-- **Chorus:** 4 lines, soaring vowels.
-- **Bridge:** 4 lines, key lift.
-- **Outro:** 2 lines, resolve the central image.
+If the draft feels like a form being filled, the conceit is too thin — not the shape. Fix the image before changing the stanza count.
 
-## Rules of thumb
+## What not to do
 
-- A chorus should make sense **out of context**; a verse should not.
-- The **title** should usually appear in the chorus.
-- If you write a pre-chorus, keep it to 2 lines—it is a ramp, not a section.
+- Do not label. Not once.
+- Do not stack a chorus that restates the verse.
+- Do not add a bridge to a song under 3 stanzas.
+- Do not rhyme-fill a stanza to reach a count.

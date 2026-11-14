@@ -1,38 +1,34 @@
-# Rhyme and Meter Cheat Sheet
+# Rhyme and Meter
 
-## Rhyme schemes
+Rhyme is measured against the corpus, not against a scheme. On Route B, against the genre default below.
 
-| Code   | Meaning                   | Example end sounds               |
-| ------ | ------------------------- | -------------------------------- |
-| AABB   | Couplet                   | _night / light_, _stone / alone_ |
-| ABAB   | Alternating               | _rain / cold / pain / gold_      |
-| ABCB   | Ballad (only 2 & 4 rhyme) | _tree / sky / me / why_          |
-| ABABCC | Six-line folk             | _a / b / a / b / c / c_          |
-| AAAA   | Monorhyme (use sparingly) | _day / way / say / play_         |
+## Relative density
 
-## Slant rhyme is fine
+- Dense corpus → dense draft.
+- Near-rhyme, assonant, fragmentary corpus → a tidy ABAB draft is a failure, not a win.
+- No rhyme in the corpus → no rhyme in the draft, unless the user asks otherwise.
 
-Perfect rhyme is not required. Vowel near-rhyme (_home / stone_) and consonant near-rhyme (_night / late_) are acceptable in pop, folk, and hip-hop. Avoid **identical rhyme** (_love / love_) unless it is deliberate.
+## Legitimate rhyme types
 
-## Syllable budgets (rough, for English pop)
+Exact, slant, assonant, consonantal, and identity rhyme are all valid. Slant is often better than exact because it resists singsong. Prefer the type the corpus actually uses.
 
-| Section   | Target syllables per line |
-| --------- | ------------------------- |
-| Verse     | 8–12                      |
-| Chorus    | 6–10 (punchier)           |
-| Bridge    | 8–14 (can be looser)      |
-| Rap verse | 12–18                     |
+## Meter
 
-Count by **stressed beats**, not strict syllables, for rap.
+- Work from the corpus's median syllable count and its ceiling. Anything well past the ceiling gets trimmed.
+- Truncation beats padding. Cut a clause rather than add a filler word.
+- Where a line needs two clauses, a semicolon or en dash holds it — but only if the corpus does that.
 
-## Meter basics
+## Where rhyme lands
 
-- **Iambic** (da-DUM) is the default for ballads and anthems.
-- **Trochaic** (DUM-da) gives a driving, chant-like feel—common in pop hooks and nursery-rhyme-style choruses.
-- **Anapestic** (da-da-DUM) is useful for forward motion in folk and country.
+Match the corpus. Final-word rhyme, internal rhyme, and rhyme that resolves a stanza are different instruments. Do not default to final-word.
 
-## Quick self-check
+## Silent pass
 
-1. Read the chorus aloud. Does it land on the same stressed syllable each line?
-2. Are the line-end words **different sounds** (no repeated rhyme word)?
-3. Does the verse have **more syllables** than the chorus? If not, the chorus may feel weak.
+1. Count syllables on the longest line. Compare to the corpus ceiling.
+2. Check rhyme mode and density against the corpus.
+3. Read the hook aloud internally. If it doesn't want to repeat, it isn't a hook.
+4. Re-check for filler. Any word that exists only to reach a rhyme goes.
+
+## `scripts/check_rhyme.py`
+
+Optional. Reports per-stanza rhyme density and flags corpus overlap when a corpus file is supplied.
