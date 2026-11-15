@@ -56,7 +56,7 @@ Skip anything the user already supplied. Do not interrogate.
 
 **Route A — artist named (the normal path).**
 
-1. Check `corpus/<artist-slug>/`. Four or more files there: use them.
+1. Check `corpus/<artist-slug>/`. `fingerprint.md` present: read it and go to Stage 2. Four or more raw files but no fingerprint: read them, fingerprint, persist, then write.
 2. Otherwise read `reference/corpus-sources.md` and run `scripts/fetch_corpus.py "ARTIST" --count 8 --per-album 2`.
 3. Verify before fingerprinting: `Select-String -Path corpus\*\*.txt -Pattern '^\['` must return 0 (no leftover headers or LRC timestamps), and any file under ~150 words gets deleted as truncated.
 4. Read `reference/voice-mirror.md` and follow it end to end.

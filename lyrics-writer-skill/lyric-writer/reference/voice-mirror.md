@@ -51,6 +51,8 @@ Silent. Do not narrate it unless asked. Fill every field; write "n/a" only when 
 | Song architecture         | how tracks open, where the turn sits, how they end                                                     |
 | Censor habit              | full word / asterisk / apostrophe clip                                                                 |
 
+Persist the table to `corpus/<artist-slug>/fingerprint.md`. On later runs, if that file exists, read it and skip Stage 0 entirely unless the user asks for a fresh pull.
+
 ## Stage 2 — Compose to the counts
 
 - Reproduce line shape, fragment rate, syntax quirks, rhyme mode and repetition engine **by number**. If the corpus runs 7 syllables and one slant rhyme per stanza, so do you.
