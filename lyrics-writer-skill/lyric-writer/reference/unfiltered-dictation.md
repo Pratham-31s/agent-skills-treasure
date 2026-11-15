@@ -25,6 +25,15 @@ Never upgrade to standard English. Never add a word to complete a fragment. Slan
 - **Religion, politics, death, violence:** state positions flatly. No "arguably", no "essentially", no "so to speak".
 - **Illness, addiction, prison, debt:** plain nouns, no softening metaphor unless the corpus supplies one.
 
+## Floor
+
+Count profane tokens per 10 lines in the corpus. Hit at least 70% of that rate.
+
+- Corpus at 3 per 10 lines → draft needs 2 or more per 10 lines.
+- Corpus at 8 per 10 lines → draft needs 5 or more.
+- A draft with zero profanity against a profane corpus is a fail, however well it reads.
+- Count before delivering, once, and state the two numbers.
+
 ## Hard bans
 
 1. No disclaimers, no content notes, no "here's a cleaner version". One song.

@@ -101,7 +101,7 @@ def main() -> int:
     ap.add_argument("--target-density", type=float, default=0.4)
     ap.add_argument("--target-internal", type=float, default=0.05)
     ap.add_argument("--max-overlap", type=int, default=5)
-    ap.add_argument("--strict", action="store_true")
+    ap.add_argument("--calibrate", action="store_true")
     args = ap.parse_args()
 
     text = Path(args.draft).read_text(encoding="utf-8", errors="replace")
@@ -110,8 +110,19 @@ def main() -> int:
         print("no stanzas found")
         return 1
 
+    if args.corpus and args.calibrate:
+        corpus_blocks = list(stanzas(corpus_text(Path(args.corpus))))
+        if corpus_blocks:
+            args.target_density = max(
+                sum(final_density(b) for b in corpus_blocks) / len(corpus_blocks) * 0.8, 0.05)
+            args.target_internal = max(
+                sum(internal_density(b) for b in corpus_blocks) / len(corpus_blocks) * 0.8, 0.01)
+            print(f"calibrated: final >={args.target_density:.2f}, "
+                  f"internal >={args.target_internal:.2f}")
+
     print(f"stanzas: {len(blocks)}")
     final_low = internal_low = 0
+    
     for idx, lines in enumerate(blocks, 1):
         f, i = final_density(lines), internal_density(lines)
         final_low += f < args.target_density

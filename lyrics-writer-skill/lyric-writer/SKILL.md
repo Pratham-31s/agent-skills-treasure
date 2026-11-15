@@ -60,6 +60,7 @@ Skip anything the user already supplied. Do not interrogate.
 2. Otherwise read `reference/corpus-sources.md` and run `scripts/fetch_corpus.py "ARTIST" --count 8 --per-album 2`.
 3. Verify before fingerprinting: `Select-String -Path corpus\*\*.txt -Pattern '^\['` must return 0 (no leftover headers or LRC timestamps), and any file under ~150 words gets deleted as truncated.
 4. Read `reference/voice-mirror.md` and follow it end to end.
+5. Print the Stage 1 fingerprint table before drafting — median syllables, fragment rate, rhyme mode and density, profanity rate. Numbers, not adjectives. This is the only check that the corpus was read.
 
 **Route B — no artist named.**
 Use `reference/song-structure.md` to pick a shape from genre alone, and `reference/rhyme-and-meter.md` for the rhyme pass. Output is still label-free.
@@ -78,6 +79,8 @@ Applies on both routes.
 ## Step 4 — Diction
 
 Read `reference/unfiltered-diction.md`. In short: match the corpus's profanity rate, keep every contraction and elision, name sex and drugs plainly, never gloss, never hedge, never soften for radio.
+
+Then measure it. Count profane tokens per 10 lines in the corpus and in the draft. Below 70% of the corpus rate is a fail, not a preference. State both numbers.
 
 ## Step 5 — Rhyme and meter pass
 
