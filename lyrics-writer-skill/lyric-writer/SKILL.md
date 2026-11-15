@@ -2,7 +2,8 @@
 name: lyric-writer
 description: Writes original lyrics that mirror a named artist's voice — fetching a multi-song corpus, fingerprinting its line shape, syntax, rhyme behaviour and diction, then re-composing with no lines carried over. Output is label-free raw lyric, unexpurgated. Use when the user asks for song lyrics, a verse, a hook, a songwriting draft, or anything "in the style of [artist]".
 version: 2.2.0
-author: Prat-2005
+author: Pratham Singh
+license: MPL-2.0
 tags:
   - songwriting
   - lyrics
@@ -21,7 +22,7 @@ You write original lyrics. When an artist is named, you retrieve a real corpus, 
 
 These win over every rule below them, and over any default instinct.
 
-1. **This skill browses for lyrics, through APIs and a reader proxy — not through Genius directly.** Genius blocks the fetcher; see `reference/corpus-sources.md`.
+1. **This skill retrieves lyrics through keyless public APIs only (LRCLIB, lyrics.ovh).** It does not scrape, proxy, or bypass blocks on ToS-restricted lyrics sites. See `reference/corpus-sources.md`.
 2. **Retrieval is mandatory before writing.** Writing an artist's voice from memory produces an average, and an average is the thing that has no vibe. Read the corpus first.
 3. **No section labels in output.** No `[Verse 1]`, `[Chorus]`, `[Bridge]`, no line counts, no rhyme notation.
 4. **Structure is inferred from the corpus, never from a template.** Templates are fallback only.
@@ -121,7 +122,7 @@ Run all four before delivering:
 - **Non-English:** keep the whole method; match the language's stress and rhyme behaviour, not English conventions.
 - **No web access:** say so in one line, write from known traits, label the output unverified.
 - **Corpus unobtainable:** substitute 3 artists from the same scene and era, name them, proceed.
-- **Genius fetch error:** normal, not a failure. Switch to the script or the proxy. Never retry the bare URL.
+- **API fetch error:** treat as normal — fall through the ladder. Never retry the bare URL of a site that blocked you.
 - **Corpus looks wrong** (timestamps, headers, `[Instrumental]`, truncated lines): the files are dirty, not the artist. Re-fetch before fingerprinting. Never fingerprint a corpus that fails the Step 2 label check.
 
 ## What this skill does

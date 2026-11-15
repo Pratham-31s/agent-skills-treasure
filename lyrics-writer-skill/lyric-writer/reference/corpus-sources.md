@@ -16,20 +16,11 @@ python scripts/fetch_corpus.py "ARTIST" --count 8
 - **lyrics.ovh** — `https://api.lyrics.ovh/v1/{artist}/{title}`, keyless JSON, returns `lyrics`. Secondary.
 - **Deezer / iTunes** — tracklist discovery only. Keyless.
 
-## Rung 2 — blocked sites through a reader proxy
-
-`genius.com`, `azlyrics.com` and `musixmatch.com` block datacenter IPs, so `WebFetch` returns "unable to fetch". Do not retry them directly. Wrap them:
-
-curl -s "https://r.jina.ai/https://genius.com/Eminem-stan-lyrics"
-curl -s "https://r.jina.ai/https://www.azlyrics.com/lyrics/eminem/stan.html"
-
-The proxy returns markdown with the lyric text intact.
-
-## Rung 3 — manual paste
+## Rung 2 — manual paste
 
 Ask the user to paste 3–4 lyrics. Say plainly that the fingerprint will be thin, then fingerprint what you were given. Do not silently proceed on memory.
 
-## Rung 4 — memory
+## Rung 3 — memory
 
 Only here, and only with the one-line "unverified" tag.
 

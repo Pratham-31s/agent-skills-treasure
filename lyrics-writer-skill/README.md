@@ -42,7 +42,11 @@ Then prompt: _"Write a song about a payphone in a dead mall, in the style of [ar
 
 ## License
 
-Skill content (prose, prompts, reference docs) is CC BY-NC 4.0 — see `LICENSE`.
-Scripts under `scripts/` are MIT.
+This project is licensed under the Mozilla Public License 2.0. See the
+[`LICENSE`](./LICENSE) file for details.
 
-Licensed lyrics are not covered by either; they belong to their publishers and are never committed.
+Source code for this project is available at
+https://github.com/Pratham-31s/agent-skills-treasure/tree/main/lyrics-writer-skill.
+
+Licensed lyrics are not covered by this license; they belong to their
+publishers and are never committed.

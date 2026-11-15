@@ -4,16 +4,15 @@ Kept out of user-facing output; recorded here so it stays auditable.
 
 ## Runtime ladder
 
-| Source                       | Role                       | Licence / terms                        | Attribution owed                         |
-| ---------------------------- | -------------------------- | -------------------------------------- | ---------------------------------------- |
-| LRCLIB (`lrclib.net`)        | Primary                    | Free and open, no key                  | Descriptive User-Agent (script sets one) |
-| lyrics.ovh                   | Secondary                  | Open-source project                    | None                                     |
-| Deezer API                   | Tracklist discovery        | Free tier, non-commercial              | None                                     |
-| iTunes Search API            | Tracklist discovery backup | Free                                   | "Powered by iTunes" in published apps    |
-| genius.com via `r.jina.ai`   | Last resort                | Unofficial API; ToS restricts scraping | None                                     |
-| azlyrics.com via `r.jina.ai` | Last resort                | ToS restricts scraping                 | None                                     |
+| Source                | Role                       | Licence / terms           | Attribution owed                         |
+| --------------------- | -------------------------- | ------------------------- | ---------------------------------------- |
+| LRCLIB (`lrclib.net`) | Primary                    | Free and open, no key     | Descriptive User-Agent (script sets one) |
+| lyrics.ovh            | Secondary                  | Open-source project       | None                                     |
+| Deezer API            | Tracklist discovery        | Free tier, non-commercial | None                                     |
+| iTunes Search API     | Tracklist discovery backup | Free                      | "Powered by iTunes" in published apps    |
 
-Genius and azlyrics block datacenter IPs, so both are reached through the reader proxy only.
+This skill does not scrape, proxy, or bypass access controls on lyrics sites
+whose terms of service restrict automated access (including Genius and AZLyrics).
 
 ## What is not ours
 

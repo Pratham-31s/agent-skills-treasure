@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build a style corpus for an artist from keyless, bot-friendly sources.
 
-Ladder: LRCLIB -> lyrics.ovh -> r.jina.ai proxy (genius/azlyrics).
-Tracklists: Deezer -> iTunes.
+Ladder: LRCLIB -> lyrics.ovh. Tracklists: Deezer -> iTunes.
+Does not scrape or proxy ToS-restricted lyrics sites.
 
     python fetch_corpus.py "Eminem" --count 8
     python fetch_corpus.py "Eminem" --out corpus-pd
@@ -22,7 +22,6 @@ import urllib.request
 from pathlib import Path
 
 UA = "lyrics-writer-skill/2.1 (+corpus-builder)"
-JINA = "https://r.jina.ai/"
 
 
 def slug(text: str) -> str:
@@ -117,19 +116,7 @@ def via_lyricsovh(artist: str, title: str):
     return None, None
 
 
-def via_proxy(artist: str, title: str):
-    """Last resort: genius and azlyrics through the r.jina.ai reader."""
-    for url in (
-        f"{JINA}https://genius.com/{slug(artist)}-{slug(title)}-lyrics",
-        f"{JINA}https://www.azlyrics.com/lyrics/{slug(artist).replace('-', '')}/{slug(title).replace('-', '')}.html",
-    ):
-        text = get_text(url)
-        if text and len(text) > 400:
-            return text, "proxy"
-    return None, None
-
-
-LADDER = (via_lrclib, via_lyricsovh, via_proxy)
+LADDER = (via_lrclib, via_lyricsovh)
 
 LRC = re.compile(r"^\s*(?:\[\d{1,3}:\d{2}(?:[.:]\d{1,3})?\])+\s*")
 LABEL = re.compile(r"^[ \t]*\[[^\]]{1,80}\][ \t]*$")
