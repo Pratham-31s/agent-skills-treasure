@@ -11,6 +11,10 @@ Kept out of user-facing output; recorded here so it stays auditable.
 | Deezer API            | Tracklist discovery        | Free tier, non-commercial | None                                     |
 | iTunes Search API     | Tracklist discovery backup | Free                      | "Powered by iTunes" in published apps    |
 
+The step-by-step retrieval ladder — exact endpoints, curl examples, and
+fetch hygiene — lives in [`reference/corpus-sources.md`](reference/corpus-sources.md).
+This file is the licence ledger; that file is the runbook.
+
 This skill does not scrape, proxy, or bypass access controls on lyrics sites
 whose terms of service restrict automated access (including Genius and AZLyrics).
 
