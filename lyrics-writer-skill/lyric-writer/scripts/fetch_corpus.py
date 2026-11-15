@@ -131,12 +131,20 @@ def via_proxy(artist: str, title: str):
 
 LADDER = (via_lrclib, via_lyricsovh, via_proxy)
 
-LABEL = re.compile(r"^\s*\[[^\]]{1,80}\]\s*$", re.MULTILINE)
+LRC = re.compile(r"^\s*(?:\[\d{1,3}:\d{2}(?:[.:]\d{1,3})?\])+\s*")
+LABEL = re.compile(r"^[ \t]*\[[^\]]{1,80}\][ \t]*$")
+
 
 def strip_labels(text: str) -> str:
-    text = LABEL.sub("", text)
-    return re.sub(r"\n{3,}", "\n\n", text).strip()
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    out = []
+    for line in text.split("\n"):
+        if LABEL.match(line):
+            continue
+        out.append(LRC.sub("", line).rstrip())
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
 
+    
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("artist")

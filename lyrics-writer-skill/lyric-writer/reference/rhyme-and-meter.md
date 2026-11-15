@@ -31,4 +31,6 @@ Match the corpus. Final-word rhyme, internal rhyme, and rhyme that resolves a st
 
 ## `scripts/check_rhyme.py`
 
-Optional. Reports per-stanza rhyme density and flags corpus overlap when a corpus file is supplied.
+Optional. Reports per-stanza final-word and internal rhyme density, and flags 5-word corpus overlap.
+python scripts/check_rhyme.py draft.txt --corpus corpus/<artist-slug>
+`--corpus` takes the artist directory. Overlap is a warning by default; add `--strict` to make any 5-word match fail the run. Trust the ear over the output — the script cannot hear a hook.

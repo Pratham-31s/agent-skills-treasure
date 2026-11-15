@@ -27,16 +27,22 @@ Then prompt: _"Write a song about a payphone in a dead mall, in the style of [ar
 | `SKILL.md`                        | Entry point, overrides, workflow                    |
 | `reference/voice-mirror.md`       | Retrieval, fingerprint, composition, copyright gate |
 | `reference/unfiltered-diction.md` | Register lock, profanity calibration, recovery loop |
+| `reference/corpus-sources.md`     | Source ladder, dataset tiers, fetch hygiene         |
 | `reference/song-structure.md`     | Genre fallback when no artist is named              |
 | `reference/rhyme-and-meter.md`    | Corpus-relative rhyme and meter                     |
+| `scripts/fetch_corpus.py`         | Builds the corpus from keyless APIs                 |
 | `scripts/check_rhyme.py`          | Rhyme-density and 5-word overlap checker            |
+| `SOURCES.md`                      | Where lyrics come from and what each licence allows |
 
 ## What it does not include
 
 - No model weights.
-- No stored lyrics or dataset.
+- No lyrics committed to the repo. The corpus is fetched at runtime into a gitignored `corpus/` directory.
 - No audio or melody generation.
 
 ## License
 
-CC BY-NC 4.0.
+Skill content (prose, prompts, reference docs) is CC BY-NC 4.0 — see `LICENSE`.
+Scripts under `scripts/` are MIT.
+
+Licensed lyrics are not covered by either; they belong to their publishers and are never committed.

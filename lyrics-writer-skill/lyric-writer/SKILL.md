@@ -1,7 +1,7 @@
 ---
 name: lyric-writer
 description: Writes original lyrics that mirror a named artist's voice — fetching a multi-song corpus, fingerprinting its line shape, syntax, rhyme behaviour and diction, then re-composing with no lines carried over. Output is label-free raw lyric, unexpurgated. Use when the user asks for song lyrics, a verse, a hook, a songwriting draft, or anything "in the style of [artist]".
-version: 2.0.0
+version: 2.2.0
 author: Prat-2005
 tags:
   - songwriting
@@ -55,7 +55,11 @@ Skip anything the user already supplied. Do not interrogate.
 ## Step 2 — Route
 
 **Route A — artist named (the normal path).**
-Check `corpus/<artist-slug>/` first. If empty, read `reference/corpus-sources.md`, run `scripts/fetch_corpus.py`, then read `reference/voice-mirror.md` and follow it end to end.
+
+1. Check `corpus/<artist-slug>/`. Four or more files there: use them.
+2. Otherwise read `reference/corpus-sources.md` and run `scripts/fetch_corpus.py "ARTIST" --count 8 --per-album 2`.
+3. Verify before fingerprinting: `Select-String -Path corpus\*\*.txt -Pattern '^\['` must return 0 (no leftover headers or LRC timestamps), and any file under ~150 words gets deleted as truncated.
+4. Read `reference/voice-mirror.md` and follow it end to end.
 
 **Route B — no artist named.**
 Use `reference/song-structure.md` to pick a shape from genre alone, and `reference/rhyme-and-meter.md` for the rhyme pass. Output is still label-free.
@@ -82,7 +86,7 @@ Silent final pass. Rhyme density and line length are judged **against the corpus
 - If the corpus is dense-rhymed, so is the draft. If the corpus is near-rhyme and fragmentary, an ABAB scaffold is a failure, not a success.
 - Slant and assonant rhyme are legitimate where the corpus uses them. Exact rhyme is not automatically better.
 - Trim any line that runs far past the corpus's syllable ceiling.
-- Run `scripts/check_rhyme.py` if a corpus file was saved, but trust the ear over the output.
+- Run `scripts/check_rhyme.py draft.txt --corpus corpus/<artist-slug>` if a corpus was saved. It reports final-word and internal rhyme density; trust the ear over the output.
 
 ## Step 6 — Output format
 
@@ -115,6 +119,7 @@ Run all four before delivering:
 - **No web access:** say so in one line, write from known traits, label the output unverified.
 - **Corpus unobtainable:** substitute 3 artists from the same scene and era, name them, proceed.
 - **Genius fetch error:** normal, not a failure. Switch to the script or the proxy. Never retry the bare URL.
+- **Corpus looks wrong** (timestamps, headers, `[Instrumental]`, truncated lines): the files are dirty, not the artist. Re-fetch before fingerprinting. Never fingerprint a corpus that fails the Step 2 label check.
 
 ## What this skill does
 

@@ -62,5 +62,9 @@ manifest.json
 ## Hygiene
 
 - 1–2s between requests. No parallel hammering.
-- Strip `[Verse 1]` style headers on ingest if present — the output stays label-free regardless.
+- The script strips two things on ingest: `[Verse 1]`-style headers and LRC timestamps (`[00:12.34]`). Both appear in LRCLIB output and both corrupt the fingerprint if left in.
+- Line endings are normalized to `\n` on ingest. Bare `\r` breaks every anchor-based check downstream.
+- Verify after fetching: `Select-String -Path corpus\*\*.txt -Pattern '^\['` returns 0. Anything else means the strip is not wired in.
 - 4 files minimum before fingerprinting. Under 4, say so and widen the search.
+- `corpus/` resolves relative to the script's parent directory, not the shell's working directory.
+- Use `--per-album 2` to force era spread. One album is a costume.
