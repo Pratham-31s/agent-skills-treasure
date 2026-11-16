@@ -53,4 +53,12 @@ If the draft reads cleaned up, run in order until it doesn't:
 
 ## Calibration note
 
-Overcorrecting is the cheaper error. A draft slightly dirtier than the corpus still sounds like a person. A draft slightly cleaner sounds like a press release.
+## Calibration note
+
+Overcorrecting is the cheaper error. A draft slightly dirtier than the corpus
+still sounds like a person. A draft slightly cleaner sounds like a press release.
+
+**But check the corpus first.** If the fingerprint says a famously profane
+artist (Eminem, DMX, N.W.A, Tyler, etc.) runs under 1.0 profanity tokens per
+stanza, the corpus is almost certainly a clean version. Do not calibrate
+against a broken corpus — re-fetch first. See `SKILL.md` Step 2 sub-step 5.

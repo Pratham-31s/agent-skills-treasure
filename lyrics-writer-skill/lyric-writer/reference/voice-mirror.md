@@ -27,6 +27,21 @@ Never write from memory while a retrieval rung is untried. Memory is an average,
 - Under 4 files: still fingerprint, but say the corpus is thin.
 - Zero files: memory, tagged. Do not dress it up.
 
+### Corpus sanity check
+
+Before fingerprinting, flag these as likely bad corpora and re-fetch:
+
+- A famously profane artist (Eminem, DMX, N.W.A, Tyler, etc.) with under
+  1.0 profanity tokens per stanza — likely clean-version or radio-edit lyrics.
+- Fewer than 4 tracks with more than 150 words each — likely truncated.
+- The same song appearing under multiple "albums" — likely duplicate tracks.
+- Track titles that don't match the artist's known discography — likely
+  wrong-artist match from the discovery API.
+
+Re-fetch with `--count 12 --per-album 3` before proceeding. If the re-fetch
+still returns an implausible fingerprint, say so in one line and label the
+output `unverified — corpus suspicious`.
+
 ## Stage 1 — Fingerprint
 
 Silent. Do not narrate it unless asked. Fill every field; write "n/a" only when genuinely absent.
@@ -50,6 +65,15 @@ Silent. Do not narrate it unless asked. Fill every field; write "n/a" only when 
 | Stanza lengths            | typical and outlier                                                                                    |
 | Song architecture         | how tracks open, where the turn sits, how they end                                                     |
 | Censor habit              | full word / asterisk / apostrophe clip                                                                 |
+| Emotional register        | 2–3 dominant tones the corpus spans (grief, defiance, menace, tenderness, celebration, aggression)     |
+| Subject-matter range      | 2–3 topic families the corpus returns to (loss, ambition, partying, family, street life)               |
+| Aggression level          | 1–5, with markers (threats, self-flagellation, alter-ego voice, volume)                                |
+| Persona markers           | self-references, alter-ego, signature interjections, ad-lib style                                      |
+
+Before Stage 2, read the completed fingerprint back as a checklist. Every row
+must be observable in the draft. If you cannot point to a specific line that
+delivers a given row, the draft fails the fingerprint — regardless of whether
+the lines are good. The fingerprint is a contract, not decoration.
 
 Persist the table to `corpus/<artist-slug>/fingerprint.md`. On later runs, if that file exists, read it and skip Stage 0 entirely unless the user asks for a fresh pull.
 
@@ -60,6 +84,16 @@ Persist the table to `corpus/<artist-slug>/fingerprint.md`. On later runs, if th
 - Carry the register and the censor habit through unchanged.
 - Hold the user's conceit. The corpus's subject matter must not leak in.
 - Write the whole song.
+- **Pick the emotional arc from the corpus's range, not from habit.** If the
+  corpus spans defiance, grief, celebration, and menace, do not write every
+  song as a heartbreak ballad. Match the arc to the user's subject. The
+  corpus's _range_ is data; the corpus's _default mood_ is not a template.
+- **Deliver the full architecture.** If the fingerprint says 3 verses + 3
+  choruses + bridge, write all seven sections. A one- or two-stanza response
+  is a failed generation, not a partial one.
+- **Production line is required when the corpus has one.** If the corpus
+  consistently presents with tempo/instrumentation tags, include one. "Optional"
+  in the output spec means "use judgment about style," not "you may omit it."
 
 ## Stage 3 — Anti-plagiarism gate
 
@@ -70,9 +104,31 @@ Persist the table to `corpus/<artist-slug>/fingerprint.md`. On later runs, if th
 
 ## Stage 4 — Output contract
 
-Title line. Blank line. Raw lyric. One blank line between stanzas. No labels, no counts, no notation. Optional production line at the end. Then:
+Exactly these blocks, in this order:
 
-`Style fingerprint only — no lines carried over.`
+1. Title line.
+2. Blank line.
+3. Raw lyric, stanzas separated by one blank line. No labels, no counts,
+   no scheme notation.
+4. Production line (required on Route A when the corpus has one; optional
+   on Route B).
+
+Then, on its own line: `Style fingerprint only — no lines carried over.`
+(Route A only.)
+
+**The response ends there.** Do not append any of the following after the
+footer:
+
+- "Next steps"
+- "Would you like…"
+- "I can also…"
+- "Follow-up"
+- Any bullet list
+- Any meta-commentary, self-review, or explanation
+
+A response that ends with anything other than the fingerprint line (or the
+production line, on Route B) is a failed generation. Delete the follow-up
+before delivering.
 
 ## Failure modes to avoid
 
@@ -82,3 +138,12 @@ Title line. Blank line. Raw lyric. One blank line between stanzas. No labels, no
 - **Subject bleed.** Writing the corpus's themes instead of the user's.
 - **Over-rhyming.** Making it tidier than the artist ever is.
 - **Restricted site scraping.** Attempting to fetch or proxy blocked commercial lyric sites instead of moving to manual paste.
+- **One-song voice.** Reproducing the same emotional arc for every artist and
+  every subject — breakup song as default. Read the corpus's register range;
+  do not collapse it to a single mood.
+- **Decorative fingerprint.** Printing the Stage 1 table and then not honoring
+  it. Every fingerprint row must be observable in the draft.
+- **Truncated song.** Delivering 1–2 stanzas when the corpus architecture
+  calls for 6–7 sections. This is a failed generation, not a deliverable one.
+- **Meta-commentary.** Appending "Next steps," follow-up prompts, or
+  self-review after the fingerprint footer.

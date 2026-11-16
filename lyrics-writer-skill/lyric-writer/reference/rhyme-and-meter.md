@@ -8,6 +8,22 @@ Rhyme is measured against the corpus, not against a scheme. On Route B, against 
 - Near-rhyme, assonant, fragmentary corpus → a tidy ABAB draft is a failure, not a win.
 - No rhyme in the corpus → no rhyme in the draft, unless the user asks otherwise.
 
+## Fingerprint contract
+
+Rhyme mode and density are set by the corpus fingerprint, not by preference.
+
+- If the fingerprint says **"internal/multisyllabic"** (90s NY, early Eminem,
+  Rakim, GZA), the draft must show internal multisyllabic chains. A draft
+  that only end-rhymes fails a multisyllabic fingerprint, regardless of how
+  clean the end-rhyme pairs are.
+- If the fingerprint says **"slant/assonant fragmentary,"** a tidy ABAB draft
+  is a failure.
+- If the fingerprint says **"exact/end-rhyme only,"** do not add internal
+  chains the corpus doesn't have.
+
+The fingerprint is a contract. Read it back before the silent pass and check
+each claim against a specific line.
+
 ## Legitimate rhyme types
 
 Exact, slant, assonant, consonantal, and identity rhyme are all valid. Slant is often better than exact because it resists singsong. Prefer the type the corpus actually uses.
@@ -28,6 +44,7 @@ Match the corpus. Final-word rhyme, internal rhyme, and rhyme that resolves a st
 2. Check rhyme mode and density against the corpus.
 3. Read the hook aloud internally. If it doesn't want to repeat, it isn't a hook.
 4. Re-check for filler. Any word that exists only to reach a rhyme goes.
+5. **Internal-rhyme check.** If the fingerprint says internal/multisyllabic, count internal rhyme chains against the corpus. A draft that reads as "end-rhyme only" fails this check and must be rewritten before delivery.
 
 ## `scripts/check_rhyme.py`
 

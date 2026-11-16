@@ -61,7 +61,16 @@ Skip anything the user already supplied. Do not interrogate.
 2. Otherwise read `reference/corpus-sources.md` and run `scripts/fetch_corpus.py "ARTIST" --count 8 --per-album 2`.
 3. Verify before fingerprinting: `Select-String -Path corpus\*\*.txt -Pattern '^\['` must return 0 (no leftover headers or LRC timestamps), and any file under ~150 words gets deleted as truncated.
 4. Read `reference/voice-mirror.md` and follow it end to end.
-5. Print the Stage 1 fingerprint table before drafting — median syllables, fragment rate, rhyme mode and density, profanity rate. Numbers, not adjectives. This is the only check that the corpus was read.
+5. **Sanity-check the corpus before printing the fingerprint:**
+   - If the artist is known-profane (Eminem, DMX, N.W.A, Tyler, etc.) and the
+     corpus profanity rate is below 1.0 per stanza, suspect a clean-version
+     corpus. Re-fetch with `--count 12 --per-album 3` before proceeding.
+   - If fewer than 4 tracks have >150 words each, re-fetch.
+   - If >30% of tracks are duplicates (same song across multiple albums),
+     re-fetch.
+   - Print the track titles and source for each track in the Stage 1 block so
+     the user can verify the corpus is what it claims to be.
+6. Print the Stage 1 fingerprint table before drafting — median syllables, fragment rate, rhyme mode and density, profanity rate. Numbers, not adjectives. This is the only check that the corpus was read.
 
 **Route B — no artist named.**
 Use `reference/song-structure.md` to pick a shape from genre alone, and `reference/rhyme-and-meter.md` for the rhyme pass. Output is still label-free.
@@ -73,7 +82,13 @@ Applies on both routes.
 - **One central conceit.** Reuse it; don't stack unrelated images.
 - **Show, don't explain.** Concrete nouns and actions over abstract adjectives.
 - **Same voice throughout.** If the opening is first person, it stays first person unless the corpus itself shifts.
-- **Whole song.** Never stop at one stanza and offer more.
+- **Whole song.** Never stop at one stanza and offer more. If the corpus
+  architecture is 3 verses + 3 choruses + bridge, deliver all seven sections.
+  A one- or two-stanza response is a failed generation, not a partial one.
+- **Emotional register is corpus-derived, not defaulted.** If the corpus spans
+  defiance, grief, celebration, and menace, do not write every song as a
+  heartbreak ballad. Pick the arc that fits the user's subject; the corpus's
+  range is data, the corpus's default mood is not a template.
 - **Line counts are the corpus's, not yours.** Once Stage 1 of Route A has produced counts, they are fixed.
 - **The subject is the content; the artist is only the delivery.** Do not let the corpus's own subject matter leak into the user's topic.
 
@@ -81,7 +96,13 @@ Applies on both routes.
 
 Read `reference/unfiltered-diction.md`. In short: match the corpus's profanity rate, keep every contraction and elision, name sex and drugs plainly, never gloss, never hedge, never soften for radio.
 
-Then measure it. Count profane tokens per 10 lines in the corpus and in the draft. Below 70% of the corpus rate is a fail, not a preference. State both numbers.
+Then measure it. Count profane tokens per 10 lines in the corpus and in the
+draft. Below 70% of the corpus rate is a fail, not a preference.
+
+**If the draft fails, rewrite it before delivering.** Do not deliver a failing
+draft with a note that it failed. Run the Recovery loop in
+`reference/unfiltered-diction.md` and re-measure. State both numbers only after
+the draft passes.
 
 ## Step 5 — Rhyme and meter pass
 
@@ -104,6 +125,19 @@ Exactly this, nothing more:
 - One blank line after the title, one blank line between stanzas.
 - Optional single production line after a trailing blank line. Keep it to tempo and instrumentation feel.
 - After the lyric, one bare line: `Style fingerprint only — no lines carried over.` (Route A only.)
+- **The output ends at the footer.** Do not append any of the following after
+  the fingerprint line, under any circumstances:
+  - "Next steps"
+  - "Would you like…"
+  - "I can also…"
+  - "Follow-up"
+  - Any bullet list
+  - Any meta-commentary, explanation, or self-review
+    If you catch yourself writing a follow-up, delete it. A response that ends
+    with anything other than the fingerprint line is a failed generation.
+- **Production line is required on Route A outputs.** If the corpus's typical
+  presentation includes a tempo/instrumentation tag, include one. "Optional"
+  in this spec means "use judgment about style," not "you may omit it."
 
 ## Step 7 — Copyright check
 
