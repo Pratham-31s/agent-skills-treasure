@@ -19,7 +19,7 @@ Never write from memory while a retrieval rung is untried. Memory is an average,
 ### Fetch mechanics
 
 - **Use Bash before WebFetch.** `python scripts/fetch_corpus.py` handles discovery and retrieval in one pass. `WebFetch` is for single pages only.
-- **genius.com and azlyrics.com fail on WebFetch.** They block datacenter IPs. Route them through `https://r.jina.ai/` and never retry them bare.
+- **Never scrape or proxy restricted lyric sites.** Do not fetch, proxy, or bypass blocks on commercial lyric sites (such as Genius or AZLyrics). If keyless APIs return nothing, move directly to manual paste.
 - **Never fall back to memory silently.** If retrieval fails, say which rungs you tried in one line, then either ask for pasted lyrics or proceed tagged `unverified — memory only`.
 
 ### Minimums
@@ -81,4 +81,4 @@ Title line. Blank line. Raw lyric. One blank line between stanzas. No labels, no
 - **Register drift.** Upgrading the artist's slang to standard English.
 - **Subject bleed.** Writing the corpus's themes instead of the user's.
 - **Over-rhyming.** Making it tidier than the artist ever is.
-- **Genius retry loop.** Hitting the same blocked URL four times instead of switching rungs.
+- **Restricted site scraping.** Attempting to fetch or proxy blocked commercial lyric sites instead of moving to manual paste.

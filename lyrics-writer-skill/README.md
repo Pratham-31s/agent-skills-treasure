@@ -4,10 +4,8 @@ A free SKILL.md skill that makes an AI agent write lyrics in a named artist's ac
 
 > **Disclaimer.** Output is AI-generated and may reproduce stylistic patterns
 > from the reference corpus. Review every line before publishing, performing,
-> or using it commercially. You are responsible for clearing rights, checking
-> for unintended similarity, and complying with the terms of any source the
-> skill retrieves from. This skill does not grant any rights to third-party
-> lyrics.
+> or using it commercially and ensure compliance with copyright and Right of Publicity laws. > You are responsible for clearing rights, checking for unintended similarity, and complying > with the terms of any source the skill retrieves from. This skill does not grant any
+> rights to third-party lyrics.
 
 ## What it does
 
@@ -25,7 +23,7 @@ artists. All are original, AI-generated lyrics — no corpus lines were carried
 over. Review before publishing or commercial use.
 
 <details>
-<summary><strong>Drake</strong> — "Red Dress"</summary>
+<summary><strong>Melodic R&B</strong> — "Red Dress"</summary>
 
 Red Dress
 
@@ -70,7 +68,7 @@ I can't, I can't, I can't, I can't
 </details>
 
 <details>
-<summary><strong>Eminem</strong> — "Spare Key"</summary>
+<summary><strong>Narrative Rap</strong> — "Spare Key"</summary>
 
 Spare Key
 
@@ -137,7 +135,7 @@ I'm gonna let it go, yeah, I'm gonna let it go
 </details>
 
 <details>
-<summary><strong>Taylor Swift</strong> — "Winter Garden"</summary>
+<summary><strong>Confessional Indie-Folk</strong> — "Winter Garden"</summary>
 
 Winter Garden
 

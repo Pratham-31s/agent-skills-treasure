@@ -107,12 +107,13 @@ Exactly this, nothing more:
 
 ## Step 7 — Copyright check
 
-Run all four before delivering:
+Run all five checks before delivering:
 
 1. No run of more than **5 consecutive words** matches any fetched line, except articles, prepositions and unavoidable clichés.
 2. No lifted signature phrase — if a fan would name the song from the phrase, it's out.
 3. No title borrowed from a fetched song.
 4. **Recognition test:** if a line could be mistaken for a real line by this artist from a specific song, rewrite it. If it merely sounds like the artist could have written it, keep it.
+5. **No artist name-dropping:** Do not include the reference artist's name, stage name, or signature catchphrases inside the generated title or lyrics.
 
 ## Edge cases
 

@@ -4,12 +4,14 @@ Kept out of user-facing output; recorded here so it stays auditable.
 
 ## Runtime ladder
 
-| Source                | Role                       | Licence / terms           | Attribution owed                         |
-| --------------------- | -------------------------- | ------------------------- | ---------------------------------------- |
-| LRCLIB (`lrclib.net`) | Primary                    | Free and open, no key     | Descriptive User-Agent (script sets one) |
-| lyrics.ovh            | Secondary                  | Open-source project       | None                                     |
-| Deezer API            | Tracklist discovery        | Free tier, non-commercial | None                                     |
-| iTunes Search API     | Tracklist discovery backup | Free                      | "Powered by iTunes" in published apps    |
+## Runtime ladder
+
+| Source                | Role                                  | Licence / terms                | Attribution owed                         |
+| --------------------- | ------------------------------------- | ------------------------------ | ---------------------------------------- |
+| LRCLIB (`lrclib.net`) | Primary                               | Free and open, no key          | Descriptive User-Agent (script sets one) |
+| lyrics.ovh            | Secondary                             | Open-source project            | None                                     |
+| iTunes Search API     | Tracklist discovery (commercial-safe) | Free                           | "Powered by iTunes" in published apps    |
+| Deezer API            | Tracklist discovery (personal only)   | Free tier, non-commercial only | None                                     |
 
 The step-by-step retrieval ladder — exact endpoints, curl examples, and
 fetch hygiene — lives in [`reference/corpus-sources.md`](reference/corpus-sources.md).

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a style corpus for an artist from keyless, bot-friendly sources.
 
-Ladder: LRCLIB -> lyrics.ovh. Tracklists: Deezer -> iTunes.
+Ladder: LRCLIB -> lyrics.ovh. Tracklists: iTunes -> Deezer
 Does not scrape or proxy ToS-restricted lyrics sites.
 
     python fetch_corpus.py "Eminem" --count 8
@@ -60,37 +60,38 @@ def discover(artist: str, count: int, per_album: int = 2):
     """Track titles, spread across albums. Deezer first, iTunes as backup."""
     titles, seen, counts = [], set(), {}
 
-    data = get_json("https://api.deezer.com/search?" + urllib.parse.urlencode(
-        {"q": f'artist:"{artist}"', "limit": min(count * 6, 100), "order": "RANKING"}))
-    for row in (data or {}).get("data", []):
+    data = get_json("https://itunes.apple.com/search?" + urllib.parse.urlencode(
+        {"term": artist, "entity": "song", "limit": min(count * 6, 100), "country": "US"}))
+    for row in (data or {}).get("results", []):
         if len(titles) >= count:
             break
-        if row.get("artist", {}).get("name", "").lower() != artist.lower():
+        if row.get("artistName", "").lower() != artist.lower():
             continue
-        name = row.get("title_short") or row.get("title") or ""
-        key = slug(name)
-        album = str((row.get("album") or {}).get("id", "?"))
+        key = slug(row.get("trackName", ""))
+        album = str(row.get("collectionId", "?"))
         if not key or key in seen or _cap(album, counts, per_album):
             continue
         seen.add(key)
         counts[album] = counts.get(album, 0) + 1
-        titles.append(name)
+        titles.append(row["trackName"])
 
     if len(titles) < count:
-        data = get_json("https://itunes.apple.com/search?" + urllib.parse.urlencode(
-            {"term": artist, "entity": "song", "limit": min(count * 6, 100), "country": "US"}))
-        for row in (data or {}).get("results", []):
+        data = get_json("https://api.deezer.com/search?" + urllib.parse.urlencode(
+            {"q": f'artist:"{artist}"', "limit": min(count * 6, 100), "order": "RANKING"}))
+        for row in (data or {}).get("data", []):
             if len(titles) >= count:
                 break
-            if row.get("artistName", "").lower() != artist.lower():
+            if row.get("artist", {}).get("name", "").lower() != artist.lower():
                 continue
-            key = slug(row.get("trackName", ""))
-            album = str(row.get("collectionId", "?"))
+            name = row.get("title_short") or row.get("title") or ""
+            key = slug(name)
+            album = str((row.get("album") or {}).get("id", "?"))
             if not key or key in seen or _cap(album, counts, per_album):
                 continue
             seen.add(key)
             counts[album] = counts.get(album, 0) + 1
-            titles.append(row["trackName"])
+            titles.append(name)
+
 
     return titles[:count]
 
