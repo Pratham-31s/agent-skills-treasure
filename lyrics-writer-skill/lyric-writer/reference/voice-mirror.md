@@ -44,7 +44,9 @@ output `unverified — corpus suspicious`.
 
 ## Stage 1 — Fingerprint
 
-Silent. Do not narrate it unless asked. Fill every field; write "n/a" only when genuinely absent.
+Printed. Print the completed table before writing. It is the contract you
+will be checked against in Stage 2 and re-checked against in Step 5 of
+SKILL.md. A silent fingerprint cannot be honored because it cannot be read.
 
 | Field                     | What to record                                                                                         |
 | ------------------------- | ------------------------------------------------------------------------------------------------------ |

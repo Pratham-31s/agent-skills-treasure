@@ -53,8 +53,6 @@ If the draft reads cleaned up, run in order until it doesn't:
 
 ## Calibration note
 
-## Calibration note
-
 Overcorrecting is the cheaper error. A draft slightly dirtier than the corpus
 still sounds like a person. A draft slightly cleaner sounds like a press release.
 
