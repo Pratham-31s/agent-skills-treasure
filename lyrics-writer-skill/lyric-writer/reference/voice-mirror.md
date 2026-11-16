@@ -75,6 +75,10 @@ must be observable in the draft. If you cannot point to a specific line that
 delivers a given row, the draft fails the fingerprint — regardless of whether
 the lines are good. The fingerprint is a contract, not decoration.
 
+When a row fails, rewrite the failing lines and re-check before delivering.
+A draft that fails the fingerprint is not a deliverable draft — it is a draft
+to be fixed, and then fixed again until every row is observable.
+
 Persist the table to `corpus/<artist-slug>/fingerprint.md`. On later runs, if that file exists, read it and skip Stage 0 entirely unless the user asks for a fresh pull.
 
 ## Stage 2 — Compose to the counts

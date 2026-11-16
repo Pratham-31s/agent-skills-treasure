@@ -70,7 +70,10 @@ Skip anything the user already supplied. Do not interrogate.
      re-fetch.
    - Print the track titles and source for each track in the Stage 1 block so
      the user can verify the corpus is what it claims to be.
-6. Print the Stage 1 fingerprint table before drafting — median syllables, fragment rate, rhyme mode and density, profanity rate. Numbers, not adjectives. This is the only check that the corpus was read.
+6. Fill the full Stage 1 fingerprint table from `reference/voice-mirror.md`
+   silently — all 21 rows. Do not print it. It is the private contract you
+   must honor in Steps 3–5. A draft that cannot be checked against every row
+   is a failed draft.
 
 **Route B — no artist named.**
 Use `reference/song-structure.md` to pick a shape from genre alone, and `reference/rhyme-and-meter.md` for the rhyme pass. Output is still label-free.
@@ -115,29 +118,29 @@ Silent final pass. Rhyme density and line length are judged **against the corpus
 
 ## Step 6 — Output format
 
-Exactly this, nothing more:
+Output order is fixed:
 
-[Title]
+1. Title on its own line.
+2. One blank line.
+3. The lyric. Stanzas separated by one blank line. No labels, no line counts,
+   no rhyme notation. Lay it out the way the artist's own pages are laid out.
+4. **Production line** — required on Route A when the corpus presents with a
+   tempo/instrumentation tag. Optional on Route B. One line, tempo and
+   instrumentation feel only.
+5. **Footer** — on its own bare line: `Style fingerprint only — no lines carried over.`
+   (Route A only.)
 
-[lyric, stanzas separated by one blank line, laid out as the artist's pages lay out]
+Additional rules:
 
-- No labels, no line numbers, no scheme notation.
-- One blank line after the title, one blank line between stanzas.
-- Optional single production line after a trailing blank line. Keep it to tempo and instrumentation feel.
-- After the lyric, one bare line: `Style fingerprint only — no lines carried over.` (Route A only.)
-- **The output ends at the footer.** Do not append any of the following after
-  the fingerprint line, under any circumstances:
-  - "Next steps"
-  - "Would you like…"
-  - "I can also…"
-  - "Follow-up"
-  - Any bullet list
-  - Any meta-commentary, explanation, or self-review
-    If you catch yourself writing a follow-up, delete it. A response that ends
-    with anything other than the fingerprint line is a failed generation.
-- **Production line is required on Route A outputs.** If the corpus's typical presentation
-  includes a tempo/instrumentation tag, include one. "Optional" in this spec means "use judgment about style," not "you may omit it."
-- **Title follows the corpus.** If the corpus uses fragment titles ("Shook Ones," "Survival of the Fittest"), use a fragment. If the corpus uses full noun phrases ("Hell on Earth," "Quiet Storm"), use one. Avoid clichés the genre has exhausted — "concrete jungle," "urban decay," "city lights."
+- **The output ends at the footer.** Do not append any of the following:
+  "Next steps", "Would you like…", "I can also…", "Follow-up", any bullet
+  list, any meta-commentary, any self-review. If you catch yourself writing
+  a follow-up, delete it. A response that ends with anything other than the
+  footer is a failed generation.
+- **Title follows the corpus.** Fragment titles for fragment-titled artists
+  (e.g."Shook Ones," "Survival of the Fittest"). Noun-phrase titles for
+  noun-phrase artists (e.g. "Hell on Earth," "Quiet Storm"). Avoid genre-exhausted
+  clichés — e.g. "concrete jungle," "urban decay," "city lights."
 
 ## Step 7 — Copyright check
 
