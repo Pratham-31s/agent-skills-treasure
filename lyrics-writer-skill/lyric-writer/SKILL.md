@@ -135,9 +135,9 @@ Exactly this, nothing more:
   - Any meta-commentary, explanation, or self-review
     If you catch yourself writing a follow-up, delete it. A response that ends
     with anything other than the fingerprint line is a failed generation.
-- **Production line is required on Route A outputs.** If the corpus's typical
-  presentation includes a tempo/instrumentation tag, include one. "Optional"
-  in this spec means "use judgment about style," not "you may omit it."
+- **Production line is required on Route A outputs.** If the corpus's typical presentation
+  includes a tempo/instrumentation tag, include one. "Optional" in this spec means "use judgment about style," not "you may omit it."
+- **Title follows the corpus.** If the corpus uses fragment titles ("Shook Ones," "Survival of the Fittest"), use a fragment. If the corpus uses full noun phrases ("Hell on Earth," "Quiet Storm"), use one. Avoid clichés the genre has exhausted — "concrete jungle," "urban decay," "city lights."
 
 ## Step 7 — Copyright check
 
