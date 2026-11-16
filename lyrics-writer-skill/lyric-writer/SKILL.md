@@ -85,9 +85,13 @@ Applies on both routes.
 - **One central conceit.** Reuse it; don't stack unrelated images.
 - **Show, don't explain.** Concrete nouns and actions over abstract adjectives.
 - **Same voice throughout.** If the opening is first person, it stays first person unless the corpus itself shifts.
-- **Whole song.** Never stop at one stanza and offer more. If the corpus
-  architecture is 3 verses + 3 choruses + bridge, deliver all seven sections.
-  A one- or two-stanza response is a failed generation, not a partial one.
+- **Whole song — no exceptions.** For rap, pop, rock, country, and R&B artists
+  with verse-chorus architecture, the minimum is **3 verses + 2 choruses +
+  outro** (or the exact count the fingerprint records, if higher). A 2-verse,
+  1-chorus output is a **partial song** and must be rewritten to full before
+  delivery. If the fingerprint architecture is unclear or absent, default to
+  3 verses + 3 choruses + outro. A one- or two-stanza response is a failed
+  generation, not a deliverable one.
 - **Emotional register is corpus-derived, not defaulted.** If the corpus spans
   defiance, grief, celebration, and menace, do not write every song as a
   heartbreak ballad. Pick the arc that fits the user's subject; the corpus's
